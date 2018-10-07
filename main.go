@@ -17,13 +17,33 @@ func main() {
 	// Setup router group for the API
 	api := router.Group("/api")
 	{
-		api.GET("/ping", func(c *gin.Context) {
+		api.GET("/", func(c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{
-				"message": "pong",
+				"message": "APIs working as expected!",
 			})
 		})
 	}
 
+	// Joke API routes
+	api.GET("/jokes", RetrieveJokesHandler)
+	api.POST("/jokes/likes/:jokeID", LikeJokeHandler)
+
 	// Start and run the server
 	router.Run(":3000")
+}
+
+// RetrieveJokesHandler retrieves a list of available jokes
+func RetrieveJokesHandler(c *gin.Context) {
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Jokes retrieving handler not yet implemented",
+	})
+}
+
+// LikeJokeHandler likes a given joke
+func LikeJokeHandler(c *gin.Context) {
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Joke liking handler not yet implemented",
+	})
 }

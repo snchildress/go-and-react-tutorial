@@ -44,7 +44,7 @@ func main() {
 
 	// Joke API routes
 	api.GET("/jokes", RetrieveJokesHandler)
-	api.POST("/jokes/likes/:jokeID", LikeJokeHandler)
+	api.PUT("/jokes/likes/:jokeID", LikeJokeHandler)
 
 	// Start and run the server
 	router.Run(":3000")

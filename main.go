@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
@@ -57,8 +58,15 @@ func RetrieveJokesHandler(c *gin.Context) {
 
 // LikeJokeHandler likes a given joke
 func LikeJokeHandler(c *gin.Context) {
-	c.Header("Content-Type", "application/json")
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Joke liking handler not yet implemented",
-	})
+	if jokeid, err := strconv.Atoi(c.Param("jokeID")); err == nil {
+		for i := 0; i < len(jokes); i++ {
+			if jokes[i].ID == jokeid {
+				jokes[i].Likes++
+			}
+		}
+		c.Header("Conent-Type", "application/json")
+		c.JSON(http.StatusOK, &jokes)
+	} else {
+		c.AbortWithStatus(http.StatusNotFound)
+	}
 }

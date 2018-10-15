@@ -118,7 +118,7 @@ func getPemCert(token *jwt.Token) (string, error) {
 	x5c := jwks.Keys[0].X5c
 	for k, v := range x5c {
 		if token.Header["kid"] == jwks.Keys[k].Kid {
-			cert = "-----BEGIN CERTFICATE-----\n" + v + "\n-----END CERTIFICATE-----"
+			cert = "-----BEGIN CERTIFICATE-----\n" + v + "\n-----END CERTIFICATE-----"
 		}
 	}
 

@@ -15,7 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Jwks struct for an array of JSON web key instances
+// Jwks struct for a slice of JSON web key instances
 type Jwks struct {
 	Keys []JSONWebKeys `json:"keys"`
 }
